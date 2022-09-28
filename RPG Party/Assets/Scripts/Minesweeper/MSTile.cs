@@ -4,15 +4,43 @@ using UnityEngine;
 
 public class MSTile : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool mine;
+    public GameObject theManager;
+    private MSManagerS theAstManager;
+    public Sprite[] emptyTextures;
+    public Sprite mineTexture;
+    
     void Start()
     {
-        
+        theManager = GameObject.FindGameObjectWithTag("GameController");
+        theAstManager = theManager.GetComponent<MSManagerS>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseUpAsButton()
     {
-        
+        if (isCovered())
+        {
+            if (mine)
+            {
+                theAstManager.revealMines();
+            }
+            else
+            {
+                loadTexture(0);
+            }
+        }
+    }
+
+    public void loadTexture(int num)
+    {
+        if (mine)
+            GetComponent<SpriteRenderer>().sprite = mineTexture;
+        else
+            GetComponent<SpriteRenderer>().sprite = emptyTextures[num];
+    }
+    
+    public bool isCovered()
+    {
+        return GetComponent<SpriteRenderer>().sprite.texture.name == "Tile";
     }
 }
