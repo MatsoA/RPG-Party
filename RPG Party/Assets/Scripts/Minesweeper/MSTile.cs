@@ -7,6 +7,8 @@ public class MSTile : MonoBehaviour
     public bool mine;
     public GameObject theManager;
     private MSManagerS theAstManager;
+    public int iCoord;
+    public int jCoord;
     public Sprite[] emptyTextures;
     public Sprite mineTexture;
     
@@ -36,7 +38,7 @@ public class MSTile : MonoBehaviour
         if (mine)
             GetComponent<SpriteRenderer>().sprite = mineTexture;
         else
-            GetComponent<SpriteRenderer>().sprite = emptyTextures[num];
+            GetComponent<SpriteRenderer>().sprite = emptyTextures[theAstManager.getAdjCount(iCoord,jCoord)];
     }
     
     public bool isCovered()
