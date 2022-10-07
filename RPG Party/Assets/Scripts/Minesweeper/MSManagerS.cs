@@ -73,6 +73,25 @@ public class MSManagerS : MonoBehaviour
         return answer;
     }
 
+    public bool checkDone()
+    {
+        bool answer = true;
+        for(int i = 0; i < w; i++)
+        {
+            for(int j = 0; i < h; i++)
+            {
+                if (theGridio[i, j].mine)
+                {
+                    if(theGridio[i,j].GetComponent<SpriteRenderer>().sprite.texture.name != "FlagTile")
+                    {
+                        answer = false;
+                    }
+                }
+            }
+        }
+        return answer;
+    }
+
     // Update is called once per frame
     void Update()
     {
