@@ -12,6 +12,7 @@ public class MSManagerS : MonoBehaviour
     public static int w = 8;
     public static int h = 8;
     public static MSTile[,] theGridio = new MSTile[w, h];
+    public bool[,] empGridio = new bool[w, h];
 
     void Start()
     {
@@ -73,7 +74,7 @@ public class MSManagerS : MonoBehaviour
         return answer;
     }
 
-    public bool checkDone()
+    public void checkDone()
     {
         bool answer = true;
         for(int i = 0; i < w; i++)
@@ -89,11 +90,54 @@ public class MSManagerS : MonoBehaviour
                 }
             }
         }
-        return answer;
+        if (answer) { Debug.Log("you win"); }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void uncovEmpties(int a, int b)
+    {
+        if (empGridio[a, b]) { return; }
+
+        empGridio[a, b] = true;
+
+        theGridio[a, b].loadTexture(0);
+
+        if (getAdjCount(a, b) > 0) { return; }
+
+        for (int i = 0; i < 8; i++)
+        {
+            switch (i)
+            {
+                case 0: //Right of tile
+                    if (a + 1 != w) { uncovEmpties(a + 1, b); }
+                    break;
+                case 1: //Down Right
+                    if ((a + 1 != w) && (b != 0)) { uncovEmpties(a + 1, b - 1); }
+                    break;
+                case 2: // Down
+                    if (b != 0) { uncovEmpties(a , b - 1); }
+                    break;
+                case 3: //Down Left
+                    if ((a != 0) && (b != 0)) { uncovEmpties(a - 1, b - 1); }
+                    break;
+                case 4: //Left of tile
+                    if (a != 0) { uncovEmpties(a - 1, b); }
+                    break;
+                case 5: //Up Left
+                    if ((a != 0) && (b + 1 != h)) { uncovEmpties(a - 1, b+1); }
+                    break;
+                case 6: // Up
+                    if (b + 1 != h) { uncovEmpties(a, b+1); }
+                    break;
+                case 7: //Up Right
+                    if ((a + 1 != w) && (b + 1 != h)) { uncovEmpties(a + 1, b + 1); }
+                    break;
+            }
+        }
+
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         
     }

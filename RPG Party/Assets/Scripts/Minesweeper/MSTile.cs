@@ -56,6 +56,7 @@ public class MSTile : MonoBehaviour
         else
         {
             GetComponent<SpriteRenderer>().sprite = flagTexture;
+            theAstManager.checkDone();
         }
     }
 
@@ -64,7 +65,14 @@ public class MSTile : MonoBehaviour
         if (mine)
             GetComponent<SpriteRenderer>().sprite = mineTexture;
         else
-            GetComponent<SpriteRenderer>().sprite = emptyTextures[theAstManager.getAdjCount(iCoord,jCoord)];
+        {
+            GetComponent<SpriteRenderer>().sprite = emptyTextures[theAstManager.getAdjCount(iCoord, jCoord)];
+            if (GetComponent<SpriteRenderer>().sprite == emptyTextures[0])
+            {
+                theAstManager.uncovEmpties(iCoord, jCoord);
+            }
+        }
+
     }
     
     public bool isCovered()
