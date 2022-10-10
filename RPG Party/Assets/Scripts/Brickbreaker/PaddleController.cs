@@ -24,4 +24,5 @@ public class PaddleController : MonoBehaviour
         //change position of paddle
         transform.Translate(translation, 0,0);
     }
+
 }
