@@ -108,13 +108,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0e97a847f4cd13d4c94d2217ad7c0dcb, type: 3}
   - {fileID: 21300000, guid: 076cdcf7ff4120940831a1163e17e38a, type: 3}
   - {fileID: 21300000, guid: 7f13901cc4643274d8cfb24c3af0589c, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: e133c46943d04f945a3c6d737c16a1a5, type: 3}
+  - {fileID: 21300000, guid: 001318bb8453e644c98fe0681037bf1f, type: 3}
+  - {fileID: 21300000, guid: 2fb89c82e3cc18845ad6418de0edfc9e, type: 3}
+  - {fileID: 21300000, guid: 4d25d8e17f13dd241a0b2b71c264e2ed, type: 3}
   mineTexture: {fileID: 21300000, guid: 1a33de1549db0544b951e256b58a2d1b, type: 3}
   flagTexture: {fileID: 21300000, guid: c9acb086b0f8331449def03a43ea4a9b, type: 3}
-  tileTexture: {fileID: 21300000, guid: ba1602d12ec22f846955370e598aac1b, type: 3}
+  tileTexture:
+  - {fileID: 21300000, guid: ba1602d12ec22f846955370e598aac1b, type: 3}
+  - {fileID: 21300000, guid: 64a36fcc9b9cf85479a34818a072abd6, type: 3}
 --- !u!61 &2603824523868647530
 BoxCollider2D:
   m_ObjectHideFlags: 0

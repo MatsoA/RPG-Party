@@ -12,7 +12,7 @@ public class MSTile : MonoBehaviour
     public Sprite[] emptyTextures;
     public Sprite mineTexture;
     public Sprite flagTexture;
-    public Sprite tileTexture;
+    public Sprite[] tileTexture;
     
     void Start()
     {
@@ -39,7 +39,7 @@ public class MSTile : MonoBehaviour
     {
         //Use for non left mouse button clicks
         if (Input.GetMouseButtonDown(1)){
-            if (GetComponent<SpriteRenderer>().sprite == tileTexture || GetComponent<SpriteRenderer>().sprite == flagTexture)
+            if (GetComponent<SpriteRenderer>().sprite == tileTexture[0] || GetComponent<SpriteRenderer>().sprite == flagTexture)
             {
                 flagPlant();
             }
@@ -51,7 +51,7 @@ public class MSTile : MonoBehaviour
     {
         if(GetComponent<SpriteRenderer>().sprite.texture.name == "FlagTile")
         {
-            GetComponent<SpriteRenderer>().sprite = tileTexture;
+            GetComponent<SpriteRenderer>().sprite = tileTexture[0];
         }
         else
         {
@@ -64,6 +64,10 @@ public class MSTile : MonoBehaviour
     {
         if (mine)
             GetComponent<SpriteRenderer>().sprite = mineTexture;
+        else if(num == 1)
+        {
+            GetComponent<SpriteRenderer>().sprite = tileTexture[1];
+        }
         else
         {
             GetComponent<SpriteRenderer>().sprite = emptyTextures[theAstManager.getAdjCount(iCoord, jCoord)];
@@ -77,6 +81,7 @@ public class MSTile : MonoBehaviour
     
     public bool isCovered()
     {
-        return GetComponent<SpriteRenderer>().sprite.texture.name == "Tile";
+        if (GetComponent<SpriteRenderer>().sprite == tileTexture[1]) { return true; }
+        return GetComponent<SpriteRenderer>().sprite == tileTexture[0];
     }
 }

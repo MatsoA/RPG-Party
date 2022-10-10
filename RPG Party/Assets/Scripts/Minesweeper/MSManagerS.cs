@@ -29,6 +29,7 @@ public class MSManagerS : MonoBehaviour
                 theGridio[i, j] = newTile.GetComponent<MSTile>();
             }
         }
+        showSafeStart();
     }
 
     public void revealMines()
@@ -134,6 +135,39 @@ public class MSManagerS : MonoBehaviour
             }
         }
 
+    }
+
+    public void showSafeStart()
+    {
+        MSTile safeStart = null;
+        foreach (MSTile spot in theGridio){ //Finds a safe starting tile close to center
+            if (spot.iCoord != 0 && spot.iCoord != w - 1 && spot.jCoord != 0 && spot.jCoord != h - 1)
+            {
+                if (getAdjCount(spot.iCoord, spot.jCoord) == 0 && spot.mine == false)
+                {
+                    safeStart = spot;
+                }
+            }
+            if (spot.iCoord > h / 4)
+            {
+                if (Random.value > .75 && safeStart != null) { break; }
+            }
+        }
+        if (safeStart == null)
+        {
+            foreach (MSTile spot in theGridio) //Finds any safe starting tile only triggered if previous loop fails
+            {
+                if (getAdjCount(spot.iCoord, spot.jCoord) == 0 && spot.mine == false)
+                {
+                    safeStart = spot;
+                }
+                if (Random.value > .15 && safeStart != null) { break; }
+            }
+        }
+        if (safeStart != null)
+        {
+            safeStart.loadTexture(1);
+        }
     }
 
         // Update is called once per frame
