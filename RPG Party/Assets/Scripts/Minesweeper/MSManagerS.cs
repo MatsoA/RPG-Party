@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MSManagerS : MonoBehaviour
 {
+    public GameManagerS GameManager;
+
     public GameObject tilePrefab;
     private GameObject newTile;
     float tempX;
@@ -16,6 +18,9 @@ public class MSManagerS : MonoBehaviour
 
     void Start()
     {
+        //
+        GameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerS>();
+
         for (int i = 0; i < w; i++)
         {
             tempX = i - (w / 2);
@@ -170,9 +175,4 @@ public class MSManagerS : MonoBehaviour
         }
     }
 
-        // Update is called once per frame
-        void Update()
-    {
-        
-    }
 }
