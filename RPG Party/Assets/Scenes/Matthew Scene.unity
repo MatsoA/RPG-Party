@@ -445,8 +445,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 7573798562250150477, guid: a4328cc82398da24290d78cfe2814e7d, type: 3}
+  GameController: {fileID: 8252767593419967820}
   brickRows: 10
   brickColumns: 3
+  totalBricks: 0
 --- !u!1 &280473860
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +800,7 @@ GameObject:
   - component: {fileID: 973196762}
   m_Layer: 0
   m_Name: Bottom Wall
-  m_TagString: Wall
+  m_TagString: Death Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,7 +830,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
