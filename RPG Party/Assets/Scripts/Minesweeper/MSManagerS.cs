@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MSManagerS : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class MSManagerS : MonoBehaviour
         foreach (MSTile spot in theGridio) {
             if (spot.mine) { spot.loadTexture(0); }
         }
+        GameManager.loseHealth(1);
+        SceneManager.LoadScene("Overworld");
     }
 
     public int getAdjCount(int a,int b)
@@ -96,7 +99,10 @@ public class MSManagerS : MonoBehaviour
                 }
             }
         }
-        if (answer) { Debug.Log("you win"); }
+        if (answer) { Debug.Log("you win");
+            GameManager.addScore(10 * w * h);
+            SceneManager.LoadScene("Overworld");
+        }
     }
 
     public void uncovEmpties(int a, int b)
