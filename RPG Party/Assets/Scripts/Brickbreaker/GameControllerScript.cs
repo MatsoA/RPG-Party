@@ -18,6 +18,11 @@ public class GameControllerScript : MonoBehaviour
     void Update()
     {
        scoreText.text = remaining.ToString();
+
+       if (remaining == 0)
+        {
+            Won();
+        }
     }
 
     public void ChangeScore()
@@ -26,13 +31,18 @@ public class GameControllerScript : MonoBehaviour
         remaining -= 1;
     }
 
-    public void lost()
+    public void Lost()
     {
+        Debug.Log("LOST!!!!!!");
 
+        //pause game
+        Time.timeScale = 0;
     }
 
-    public void won()
+    public void Won()
     {
-
+        Debug.Log("WON!!!!!");
+        //pause game
+        Time.timeScale = 0;
     }
 }
