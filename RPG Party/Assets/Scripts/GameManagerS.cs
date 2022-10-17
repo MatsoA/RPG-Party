@@ -27,6 +27,6 @@ public class GameManagerS : MonoBehaviour
 
     public void addScore(int addition)
     {
-        score += addition
+        score += addition;
     }
 }
