@@ -5,13 +5,15 @@ using TMPro;
 
 public class GameControllerScript : MonoBehaviour
 {
+    public GameManagerS GameManager;
+
     public TextMeshProUGUI scoreText;
     public int remaining;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerS>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,9 @@ public class GameControllerScript : MonoBehaviour
     {
         Debug.Log("LOST!!!!!!");
 
+        //update player health
+        GameManager.loseHealth(1);
+
         //pause game
         Time.timeScale = 0;
     }
@@ -42,6 +47,10 @@ public class GameControllerScript : MonoBehaviour
     public void Won()
     {
         Debug.Log("WON!!!!!");
+
+        //update score
+        GameManager.addScore(100);
+
         //pause game
         Time.timeScale = 0;
     }
