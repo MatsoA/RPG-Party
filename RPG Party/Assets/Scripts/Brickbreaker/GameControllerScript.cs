@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -40,8 +41,9 @@ public class GameControllerScript : MonoBehaviour
         //update player health
         GameManager.loseHealth(1);
 
+        SceneManager.LoadScene("Overworld");
         //pause game
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     public void Won()
@@ -51,7 +53,9 @@ public class GameControllerScript : MonoBehaviour
         //update score
         GameManager.addScore(100);
 
+        SceneManager.LoadScene("Overworld");
+
         //pause game
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 }
