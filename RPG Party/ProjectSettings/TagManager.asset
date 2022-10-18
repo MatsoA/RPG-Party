@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - GameManager
   - Death Floor
+  - enemy
+  - playbutton
   layers:
   - Default
   - TransparentFX
