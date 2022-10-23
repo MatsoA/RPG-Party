@@ -29,6 +29,7 @@ public class BallStart : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //update score when ball hits brick
         if (collision.gameObject.tag == "Brick")
         {
             Debug.Log("collision");
@@ -36,4 +37,11 @@ public class BallStart : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Death Floor")
+        {
+            gameController.GetComponent<GameControllerScript>().Lost();
+        }
+    }
 }

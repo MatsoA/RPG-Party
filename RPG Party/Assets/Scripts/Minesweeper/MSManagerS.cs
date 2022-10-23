@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MSManagerS : MonoBehaviour
 {
+    public GameManagerS GameManager;
+
     public GameObject tilePrefab;
     private GameObject newTile;
     float tempX;
@@ -16,6 +19,9 @@ public class MSManagerS : MonoBehaviour
 
     void Start()
     {
+        //
+        GameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerS>();
+
         for (int i = 0; i < w; i++)
         {
             tempX = i - (w / 2);
@@ -29,6 +35,7 @@ public class MSManagerS : MonoBehaviour
                 theGridio[i, j] = newTile.GetComponent<MSTile>();
             }
         }
+        showSafeStart();
     }
 
     public void revealMines()
@@ -36,6 +43,8 @@ public class MSManagerS : MonoBehaviour
         foreach (MSTile spot in theGridio) {
             if (spot.mine) { spot.loadTexture(0); }
         }
+        GameManager.loseHealth(1);
+        SceneManager.LoadScene("Overworld");
     }
 
     public int getAdjCount(int a,int b)
@@ -90,7 +99,10 @@ public class MSManagerS : MonoBehaviour
                 }
             }
         }
-        if (answer) { Debug.Log("you win"); }
+        if (answer) { Debug.Log("you win");
+            GameManager.addScore(10 * w * h);
+            SceneManager.LoadScene("Overworld");
+        }
     }
 
     public void uncovEmpties(int a, int b)
@@ -136,9 +148,37 @@ public class MSManagerS : MonoBehaviour
 
     }
 
-        // Update is called once per frame
-        void Update()
+    public void showSafeStart()
     {
-        
+        MSTile safeStart = null;
+        foreach (MSTile spot in theGridio){ //Finds a safe starting tile close to center
+            if (spot.iCoord != 0 && spot.iCoord != w - 1 && spot.jCoord != 0 && spot.jCoord != h - 1)
+            {
+                if (getAdjCount(spot.iCoord, spot.jCoord) == 0 && spot.mine == false)
+                {
+                    safeStart = spot;
+                }
+            }
+            if (spot.iCoord > h / 4)
+            {
+                if (Random.value > .75 && safeStart != null) { break; }
+            }
+        }
+        if (safeStart == null)
+        {
+            foreach (MSTile spot in theGridio) //Finds any safe starting tile only triggered if previous loop fails
+            {
+                if (getAdjCount(spot.iCoord, spot.jCoord) == 0 && spot.mine == false)
+                {
+                    safeStart = spot;
+                }
+                if (Random.value > .15 && safeStart != null) { break; }
+            }
+        }
+        if (safeStart != null)
+        {
+            safeStart.loadTexture(1);
+        }
     }
+
 }
