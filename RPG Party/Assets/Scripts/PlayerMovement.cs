@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    private Transform _originalParent;
     
     private void Awake()
     {
@@ -18,12 +19,12 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        _originalParent = transform.parent;
     }
  
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
- 
+        horizontalInput = Input.GetAxis("Horizontal"); 
         //Flip player when facing left/right.
         if (horizontalInput > 0.01f)
             transform.localScale = new Vector3(2, 2, 2);
@@ -89,4 +90,14 @@ public class PlayerMovement : MonoBehaviour
     return raycastHit.collider != null;
     }
     
+    public void SetParent(Transform newParent)
+    {
+        _originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+    
+    public void ResetParent()
+    {
+        transform.parent = _originalParent;
+    }
 }
