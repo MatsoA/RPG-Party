@@ -26,6 +26,11 @@ public class GameControllerScript : MonoBehaviour
         {
             Won();
         }
+
+       if (Input.GetKey("r")) 
+        {
+            Lost();
+        }
     }
 
     public void ChangeScore()

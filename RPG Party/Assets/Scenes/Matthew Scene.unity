@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 7573798562250150477, guid: a4328cc82398da24290d78cfe2814e7d, type: 3}
   GameController: {fileID: 8252767593419967820}
-  brickRows: 10
+  brickRows: 8
   brickColumns: 3
   totalBricks: 0
 --- !u!1 &280473860
